@@ -1,4 +1,4 @@
-Real Time Code Editor
+<h2>Real Time Code Editor<h2>
 Real Time Code Editor is a full-stack project that allows multiple users to join a room created by the room creator using a unique ID. The code changes made by any user are updated in real-time. The project is built using ReactJS for the frontend, socket.io for real-time communication, and Express for the backend.
 
 Installation
@@ -24,19 +24,19 @@ Copy code
 npm run build
 This will create a build folder with the optimized production build of the project.
 
-Dependencies
+<h3>Dependencies<h3>
 Real Time Code Editor uses the following dependencies:
 
-React
-React DOM
-React Router DOM
-Socket.IO
-Socket.IO client
-Express
-UUID
-Codemirror
-React Avatar
-React Hot Toast
+1.  React
+2.  React DOM
+3.  React Router DOM
+4.  Socket.IO
+5.  Socket.IO client
+6.  Express
+7.  UUID
+8.  Codemirror
+9.  React Avatar
+10. React Hot Toast
 Web Vitals
 Contributing
 Contributions to the project are always welcome. To contribute, follow these steps:
