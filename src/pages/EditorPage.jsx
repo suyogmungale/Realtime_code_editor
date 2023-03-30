@@ -8,15 +8,16 @@ import { toast } from 'react-hot-toast';
 
 
 const EditorPage = () => {
-  const socketRef = useRef(null);
-  const location = useLocation();
-  //const navigate = useNavigate();
-  const { roomId } = useParams();
-  const reactNavigator = useNavigate();
-  const [clients, setClients] = useState([]);
+   const socketRef = useRef(null);
+   const location = useLocation();
+  // const navigate = useNavigate();
+   const { roomId } = useParams();
+   const reactNavigator = useNavigate();
+  const [clients, setClients] = useState([ { socketId: 'Dg5jQJjzGxxTUktEAAAq', username: 'suyog mungale' },
+  { socketId: 'nvB5fVdBW4UgMOTCAAAr', username: 'devraj' }]);
 
   useEffect(() => {
-    const init = async () => {
+    const init = async () =>{
       socketRef.current = await initSocket();
       socketRef.current.on('connect_error', (err) => handleErrors(err));
       socketRef.current.on('connect_failed', (err) => handleErrors(err));
@@ -27,32 +28,26 @@ const EditorPage = () => {
         reactNavigator('/');
     }
 
-      socketRef.current.emit(ACTIONS.JOIN, {
+
+      socketRef.current.emit(ACTIONS.JOIN,{
         roomId,
-        userName: location.state?.userName
+        username:location.state?.username,
       });
 
-      //listening for join event
-      socketRef.current.on(ACTIONS.JOIN, ({clients, userName, socketId}) => {
-        if(userName !== location.state?.userName){
-           toast.success(`${userName} has join`);
-           console.log(`${userName}`)
-        }
-        setClients(clients);
-        console.log(clients)
-      }
-      );
+      //Listening for joined
+      // socketRef.current.on(ACTIONS.JOINED, 
+      //   (clients,username,socketId) => {
+      //     if(username !== location.state?.username){
+      //       toast.success(`${username} has joined the room`)
+      //       console.log(`${username}`)
+      //     }
+      //     setClients(clients);
+      // })
 
-    };
-
+    }
     init();
-  }, []);
-
-
-  if (!location.state) {
-    return <Navigate to="/" />;
-  }
-
+  }, [])
+  
 
   return (
     <div className="mainWrap">
